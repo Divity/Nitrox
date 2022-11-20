@@ -66,34 +66,7 @@ namespace NitroxLauncher
                                     MessageBoxImage.Error);
                     Environment.Exit(1);
                 }
-                
-                // This pirate detection subscriber is immediately invoked if pirate has been detected right now.
-                PirateDetection.PirateDetected += (o, eventArgs) =>
-                {
-                    LauncherNotifier.Info("Nitrox does not support pirated version of Subnautica");
-                    LauncherNotifier.Info("Yo ho ho, Ahoy matey! Ye be a pirate!");
-
-                    WebBrowser webBrowser = new()
-                    {
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        VerticalAlignment = VerticalAlignment.Stretch,
-                        Margin = new Thickness(0),
-                        
-                        Height = MinHeight * 0.7,
-                        Width = MinWidth * 0.7
-                    };
-
-                    FrameContent = webBrowser;
-
-                    string embed = "<html><head>" +
-                                   "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"/>" +
-                                   "</head><body>" +
-                                   $"<iframe width=\"{webBrowser.Width - 24}\" height=\"{webBrowser.Height - 24}\" src=\"{{0}}\"" +
-                                   "frameborder = \"0\" allow = \"autoplay; encrypted-media\" allowfullscreen></iframe>" +
-                                   "</body></html>";
-                    webBrowser.NavigateToString(string.Format(embed, "https://www.youtube.com/embed/i8ju_10NkGY?autoplay=1&loop=1&showinfo=0&controls=0"));
-                    SideBarPanel.Visibility = Visibility.Hidden;
-                };
+            
 
                 if (!NetworkInterface.GetIsNetworkAvailable())
                 {
